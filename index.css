@@ -1,0 +1,66 @@
+body {
+	padding-top: 50px;
+	
+}
+
+/*
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	color: #262626;
+	text-decoration: none;
+	background-color: #66CCFF; change color of links in drop down here
+}
+*/
+
+
+.starter-template {
+	text-align: center;
+	width:100%;
+}
+
+.container-fluid {
+	width:100%;
+	padding:0px 0px 0px 0px;
+}
+
+#mainOne {
+	padding:0px 0px 0px 0px;
+}
+
+#mainThree {
+	width:100%
+	color:#000000;
+}
+
+h1, h2, {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-size: 60px;
+    line-height: 70px;
+    text-shadow: 1px 1px 1px #ccc;
+}
+    
+h3 {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-size:45px;
+}
+
+h4 {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-size: 35px;
+    line-height: 45px;
+}
+
+
+ 
+p, div {
+    font-family: 'Goudy Bookletter 1911', Georgia, Times, serif;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+#divIncTable {
+	display:none;
+}
+
+#container2{
+	display:none
+}
