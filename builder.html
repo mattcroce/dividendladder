@@ -26,51 +26,7 @@
 	
 	<title>Build Your Own Dividend Income Ladder</title>
 	
-<script type="text/javascript" language="javascript">
-	$(document).ready(function() {
-		$('#stocks').keypress(function(e) {
-		if(e.keyCode==13)
-		$('#stockSubmit').click();
-		});
-		});
 
-	function buildTable() {
-		var inp = $('#stocks').val();
-		var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
-		if(jQuery.trim(inp).length == 0) {
-			var errMsgBlank
-			errMsgBlank = "Cannot be blank. Please enter a number.";
-			alert(errMsgBlank);
-		}
-		else if(!(numberRegex.test(inp))) {
-    		var errMsgNum
-    		errMsgNum = "Must be a number. Please enter a number.";
-    		alert(errMsgNum);
-    	}
-    	else if((jQuery.trim(inp).length > 0) && (numberRegex.test(inp))) {
-			$("#targetStockNumber").fadeOut( 'slow');
-			var howMany = document.getElementById("stocks").value;
-			var targetInput = document.getElementById("container2");
-			while (targetInput.hasChildNodes()) {
-			targetInput.removeChild(targetInput.lastChild);
-			}
-			for (i=0;i<howMany;i++) {
-			targetInput.appendChild(document.createTextNode("Stock Symbol " + (i+1) + ": " ));
-			var input = document.createElement("input");
-			input.type="text";
-			targetInput.appendChild(input);
-			targetInput.appendChild(document.createElement("br"));
-			targetInput.appendChild(document.createElement("br"));
-			}
-			var btn = document.createElement("button");
-			var btnTxt = document.createTextNode("Submit");
-			btn.appendChild(btnTxt);
-			targetInput.appendChild(btn);
-			$("#container2").delay( 800 ).fadeIn( 'slow');
-			var count=$("#container2 input").length;
-					}
-				}
-</script>
 
 
 
@@ -107,7 +63,7 @@
 			<div id="targetStockNumber">
 				<p> How many stocks would you like to add to your Dividend Income Ladder?</p>
 				<br/>
-				<input type="text" id="stocks" name="stocks" value="">   <button id="stockSubmit" onclick="buildTable()">Submit</button>
+				<input type="text" id="stocks" name="stocks" value="">   <button id="stockSubmit">Submit</button>
 				
 			</div>
 			<br/>
@@ -121,7 +77,9 @@
 		<div class="col-md-6 col-md-offset-3">
 			<br/>
 
-			<div id="container2" />
+			<div id="container2"> 
+
+			</div>
 		</div>
 		</div>
 	</div>
@@ -132,26 +90,65 @@
 			<br/>
 
 			<div id="divIncTable">
-				<p><strong>Dividend Income Ladder</strong></p>
-				<table>
-					<tr>
-						<th>January</th>
-						<th>February</th>
-						<th>March</th>
-						<th>April</th>
-						<th>May</th>
-						<th>June</th>
-						<th>July</th>
-						<th>August</th>
-						<th>September</th>
-						<th>October</th>
-						<th>Novebmer</th>
-						<th>December</th>
-					</tr>
+				<table id="divIncLadder">
+					<div id="headRow">
+						<tr>
+							<th>Company</th>
+						</tr>
+					</div><br/><br/>
+					<div id="companyRows"></div>
 				</table>
 			</div>
 		</div>	
 		</div>
 	</div>
+
+
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$('#stocks').keypress(function(e) {
+		if(e.keyCode==13)
+		$('#stockSubmit').click();
+		});
+		});			
+	$(document).ready(function () {
+		$('#stockSubmit').click (function() {
+			var inp = $('#stocks').val();
+			var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+			if(jQuery.trim(inp).length == 0) {
+				var errMsgBlank;
+				errMsgBlank = "Cannot be blank. Please enter a number.";
+				alert(errMsgBlank);
+			}
+			else if(!(numberRegex.test(inp))) {
+				var errMsgNum;
+				errMsgNum = "Must be a number. Please enter a number.";
+				alert(errMsgNum);
+			}
+			else if((jQuery.trim(inp).length > 0) && (numberRegex.test(inp))) {
+				$("#targetStockNumber").fadeOut( 'slow');
+			for(i=0;i<inp;i++){
+				$('<div id="companyNameLabel" />').fadeIn('slow').appendTo('#container2');
+				$('<div><input type="text" id="tickInp" class="field" name="dynamic[]" value="" /></div>').fadeIn('slow').appendTo('#companyNameLabel');
+				$('<div><br/><br/></div>').fadeIn('slow').appendTo('#tickInp');
+			}
+			$('<div><input name="submit" type="button" id="tickSub" class="submit" value="Submit" /></div>').fadeIn('slow').appendTo('#container2');
+			$("#container2").delay( 800 ).fadeIn( 'slow');//GOOD
+			$('#tickSub').click (function() {
+				$("#container2").fadeOut('slow');//GOOD
+				var answers = [];
+				$.each($('.field'),function() {
+					answers.push($(this).val());
+				});
+				if(answers.length == 0) {
+					answers="none";
+				}
+				alert(answers);
+				return false;
+		});
+		}	
+	});
+	});		
+</script>
 		
 </body>
