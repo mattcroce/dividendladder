@@ -1,3 +1,5 @@
+
+<?php include("connection.php");?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -63,7 +65,7 @@
 			<div id="targetStockNumber">
 				<p> How many stocks would you like to add to your Dividend Income Ladder?</p>
 				<br/>
-				<input type="text" id="stocks" name="stocks" value="">   <button id="stockSubmit">Submit</button>
+				<input type="text" id="stocks" name="stocks" value="">   <button id="stockSubmit" class="submit">Submit</button>
 				
 			</div>
 			<br/>
@@ -78,7 +80,8 @@
 			<br/>
 
 			<div id="container2"> 
-
+				<form method="post" class="form" role="form" id="tickForm">
+				</form>
 			</div>
 		</div>
 		</div>
@@ -105,6 +108,8 @@
 
 
 <script type="text/javascript" language="javascript">
+	//Allows hitting enter to function as a mouse click
+	//on the first button the user sees
 	$(document).ready(function() {
 		$('#stocks').keypress(function(e) {
 		if(e.keyCode==13)
@@ -128,7 +133,7 @@
 			else if((jQuery.trim(inp).length > 0) && (numberRegex.test(inp))) {
 				$("#targetStockNumber").fadeOut( 'slow');
 			for(i=0;i<inp;i++){
-				$('<div id="companyNameLabel" />').fadeIn('slow').appendTo('#container2');
+				$('<div id="companyNameLabel" />').fadeIn('slow').appendTo('#tickForm');
 				$('<div><input type="text" id="tickInp" class="field" name="dynamic[]" value="" /></div>').fadeIn('slow').appendTo('#companyNameLabel');
 				$('<div><br/><br/></div>').fadeIn('slow').appendTo('#tickInp');
 			}
@@ -143,12 +148,19 @@
 				if(answers.length == 0) {
 					answers="none";
 				}
-				alert(answers);
+				var numAns = answers.length;
+
+				for(i=0;i<inp;i++) {
+				$.each(answers, function(index, value) {
+					alert(value);
+				});
 				return false;
+				}
 		});
 		}	
 	});
-	});		
+	});
+			
 </script>
 		
 </body>
