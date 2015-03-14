@@ -108,14 +108,16 @@
 
 
 <script type="text/javascript" language="javascript">
-	//Allows hitting enter to function as a mouse click
+	//Allows hitting enter in the #stocks 
+	//textbox to function as a mouse click
 	//on the first button the user sees
 	$(document).ready(function() {
 		$('#stocks').keypress(function(e) {
 		if(e.keyCode==13)
 		$('#stockSubmit').click();
 		});
-		});			
+		});	
+		//Checks that the user entered a 		
 	$(document).ready(function () {
 		$('#stockSubmit').click (function() {
 			var inp = $('#stocks').val();
@@ -148,7 +150,7 @@
 				if(answers.length == 0) {
 					answers="none";
 				}
-				var numAns = answers.length;
+
 
 				for(i=0;i<inp;i++) {
 				$.each(answers, function(index, value) {
